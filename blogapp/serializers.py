@@ -47,9 +47,11 @@ class CustomTokenSerializer(TokenSerializer):
         fields = ('key', 'user')
         
 class CardSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+    user_id = serializers.IntegerField()
     class Meta:
         model = Card
-        fields = '__all__'
+        fields = ['id', 'user', 'user_id', 'title', 'image_url', 'content']
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
