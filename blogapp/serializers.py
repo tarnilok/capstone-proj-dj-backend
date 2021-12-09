@@ -51,7 +51,7 @@ class CardSerializer(serializers.ModelSerializer):
     user_id = serializers.IntegerField()
     class Meta:
         model = Card
-        fields = ['id', 'user', 'user_id', 'title', 'image_url', 'content']
+        fields = ['id', 'user', 'user_id', 'title', 'image_url', 'content', 'createdDate', 'updatedDate']
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
