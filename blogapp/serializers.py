@@ -49,12 +49,31 @@ class CustomTokenSerializer(TokenSerializer):
 class CardSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
     user_id = serializers.IntegerField()
+    like_count = serializers.SerializerMethodField()
+    view_count = serializers.SerializerMethodField()
+    comment_count = serializers.SerializerMethodField()
     class Meta:
         model = Card
-        fields = ['id', 'user', 'user_id', 'title', 'image_url', 'content', 'createdDate', 'updatedDate']
+        fields = ['id', 'user', 'user_id', 'title', 'image_url', 'content', 'createdDate', 'updatedDate', 'like_count', 'view_count', 'comment_count']
+        
+    def get_like_count(self, obj):
+        return Like.objects.filter(user_id=obj.id).count()
+    
+    def get_view_count(self, obj):
+        return PostView.objects.filter(user_id=obj.id).count()
+    
+    def get_comment_count(self, obj):
+        return Comment.objects.filter(user_id=obj.id).count()
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ('content',)
+        
+class LikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Like
+        fields = '__all__'
+        
+        
         

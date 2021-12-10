@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.fields import NullBooleanField
-
 class Card(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=100, unique=True)
@@ -16,14 +14,14 @@ class Card(models.Model):
     class Meta:
         ordering = ['id']
     
-    def comment_count(self):
-        return self.comment_set.all().count()
+    # def comment_count(self):
+    #     return self.comment_set.all().count()
     
-    def view_count(self):
-        return self.postview_set.all().count()
+    # def view_count(self):
+    #     return self.postview_set.all().count()
     
-    def like_count(self):
-        return self.like_set.all().count()
+    # def like_count(self):
+    #     return self.like_set.all().count()
         
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from .serializers import RegisterSerializer
 from django.contrib.auth.models import User
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from .models import Card
-from .serializers import CardSerializer
+from .models import Card, Like
+from .serializers import CardSerializer, LikeSerializer
 from .permissions import IsUserOrNotAllowed
 from .pagination import NewPageNumberPagination
 
@@ -28,3 +28,8 @@ class Card_Crud(ModelViewSet):
     serializer_class = CardSerializer
     permission_class = IsUserOrNotAllowed
     pagination_class = NewPageNumberPagination
+    
+class LikeView(RetrieveUpdateDestroyAPIView):
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
+    
