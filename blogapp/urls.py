@@ -8,6 +8,6 @@ router.register('cards', Card_Crud)
 urlpatterns = [
     path('auth_login/', include('dj_rest_auth.urls')),
     path('register/', Register.as_view()),
-    path('liked/<int:pk>', LikeView.as_view()),
+    path('liked/', LikeView.as_view()),
     path('',  include(router.urls)),
 ]   
