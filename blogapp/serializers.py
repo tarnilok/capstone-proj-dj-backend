@@ -57,7 +57,8 @@ class CardSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'user_id', 'title', 'image_url', 'content', 'createdDate', 'updatedDate', 'like_count', 'view_count', 'comment_count']
         
     def get_like_count(self, obj):
-        return Like.objects.filter(user_id=obj.id).count()
+        # print(Like.objects.get(user_id=1))
+        return Like.objects.filter(card_id=obj.id).count()
     
     def get_view_count(self, obj):
         return PostView.objects.filter(user_id=obj.id).count()
