@@ -4,10 +4,10 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register('cards', Card_Crud)
+router.register('liked', LikeView)
 
 urlpatterns = [
     path('auth_login/', include('dj_rest_auth.urls')),
     path('register/', Register.as_view()),
-    path('liked/', LikeView.as_view()),
     path('',  include(router.urls)),
 ]   
