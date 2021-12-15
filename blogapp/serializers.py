@@ -60,10 +60,10 @@ class CardSerializer(serializers.ModelSerializer):
         return Like.objects.filter(card_id=obj.id).count()
     
     def get_view_count(self, obj):
-        return PostView.objects.filter(user_id=obj.id).count()
+        return PostView.objects.filter(card_id=obj.id).count()
     
     def get_comment_count(self, obj):
-        return Comment.objects.filter(user_id=obj.id).count()
+        return Comment.objects.filter(card_id=obj.id).count()
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
