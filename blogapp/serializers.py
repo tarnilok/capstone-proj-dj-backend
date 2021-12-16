@@ -66,9 +66,11 @@ class CardSerializer(serializers.ModelSerializer):
         return Comment.objects.filter(card_id=obj.id).count()
 
 class CommentSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+    user_id = serializers.IntegerField()
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ['user', 'user_id', 'card', 'content']
         
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
