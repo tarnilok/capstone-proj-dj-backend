@@ -70,7 +70,7 @@ class CommentSerializer(serializers.ModelSerializer):
     user_id = serializers.IntegerField()
     class Meta:
         model = Comment
-        fields = ['user', 'user_id', 'card', 'content']
+        fields = ['user', 'user_id', 'card', 'content', 'time_stamp']
         
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:
