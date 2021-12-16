@@ -68,9 +68,12 @@ class CardSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
     user_id = serializers.IntegerField()
+    timesince = serializers.DateTimeField()
     class Meta:
         model = Comment
-        fields = ['user', 'user_id', 'card', 'content', 'time_stamp']
+        fields = ['user', 'user_id', 'card', 'content', 'time_stamp', 'timesince']
+        
+        
         
 class LikeSerializer(serializers.ModelSerializer):
     class Meta:

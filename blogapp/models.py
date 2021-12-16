@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.timesince import timesince
 class Card(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=100, unique=True)
@@ -28,6 +29,10 @@ class Comment(models.Model):
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
     time_stamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
+    
+    @property
+    def timesince(self):
+        return timesince(self.time_stamp)
     
     def __str__(self):
         return self.user.username
