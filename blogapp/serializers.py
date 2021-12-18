@@ -52,9 +52,10 @@ class CardSerializer(serializers.ModelSerializer):
     like_count = serializers.SerializerMethodField()
     view_count = serializers.SerializerMethodField()
     comment_count = serializers.SerializerMethodField()
+    card_numbers = serializers.SerializerMethodField()
     class Meta:
         model = Card
-        fields = ['id', 'user', 'user_id', 'title', 'image_url', 'content', 'createdDate', 'updatedDate', 'like_count', 'view_count', 'comment_count']
+        fields = ['id', 'user', 'user_id', 'title', 'image_url', 'content', 'createdDate', 'updatedDate', 'like_count', 'view_count', 'comment_count', 'card_numbers']
         
     def get_like_count(self, obj):
         return Like.objects.filter(card_id=obj.id).count()
@@ -64,6 +65,9 @@ class CardSerializer(serializers.ModelSerializer):
     
     def get_comment_count(self, obj):
         return Comment.objects.filter(card_id=obj.id).count()
+    
+    def get_card_numbers(self, obj):
+        return Card.objects.all().count()
 
 class CommentSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
